@@ -8,7 +8,6 @@ SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;destsuffix=gcc-${PV} 
         file://optional_libstdc.patch \
         file://use-defaults.h-and-t-oe-in-B.patch \
         file://GLIBC_DYNAMIC_LINKER.patch \
-        file://64bithack.patch \
 "
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
