@@ -1,10 +1,10 @@
 require eglibc.inc
 
-PR = "r1"
+PR = "r2"
 
 DEPENDS += "gperf-native kconfig-frontends-native"
 
-SRCREV = "8307811cc525d8072ceb3810144b305b5fc7a67c"
+SRCREV = "c7aa4d0cd3be0bc4622d096bf2129744bc090653"
 SRC_URI = "git://git.am.freescale.net/gitolite/sdk/eglibc.git;destsuffix=eglibc-${PV} \
 		file://etc/ld.so.conf \ 
 		file://generate-supported.mk \
