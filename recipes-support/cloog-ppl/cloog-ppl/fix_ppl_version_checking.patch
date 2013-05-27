@@ -1,0 +1,27 @@
+From cfc9abdb69b6329939b85ed914419171bd79df9e Mon Sep 17 00:00:00 2001
+From: Alexandru-Cezar Sardan <alexandru.sardan@freescale.com>
+Date: Thu, 23 May 2013 14:34:53 +0300
+Subject: [PATCH] This patch enables CLooG 0.15.x to compile with later
+ versions of PPL
+
+Signed-off-by: Alexandru-Cezar Sardan <alexandru.sardan@freescale.com>
+---
+ configure.in |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/configure.in b/configure.in
+index ecfc738..1fb195a 100644
+--- a/configure.in
++++ b/configure.in
+@@ -340,7 +340,7 @@ if test "x$with_ppl" != "x" -a "x$with_ppl" != "xno"; then
+ 
+ 	AC_MSG_CHECKING([for version $ppl_major_version.$ppl_minor_version of PPL])
+ 	AC_TRY_COMPILE([#include "ppl_c.h"],[
+-	#if PPL_VERSION_MAJOR != $ppl_major_version || PPL_VERSION_MINOR != $ppl_minor_version
++	#if PPL_VERSION_MAJOR != $ppl_major_version || PPL_VERSION_MINOR < $ppl_minor_version
+ 	choke me
+ 	#endif
+ 	], [AC_MSG_RESULT([yes])], [AC_MSG_ERROR(Can't find correct version of PPL.) ])
+-- 
+1.7.9.5
+

@@ -12,3 +12,14 @@ SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;destsuffix=gcc-${PV} 
 "
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
+NATIVEDEPS =+ " cloog-ppl-native"
+
+EXTRA_OECONF_BASE = " --enable-lto \
+			--enable-libssp \
+			--disable-bootstrap \
+			--disable-libmudflap \
+			--with-system-zlib \
+			--with-linker-hash-style=${LINKER_HASH_STYLE} \
+			--enable-linker-build-id \
+			--enable-checking=release \
+			--enable-cheaders=c_global "
