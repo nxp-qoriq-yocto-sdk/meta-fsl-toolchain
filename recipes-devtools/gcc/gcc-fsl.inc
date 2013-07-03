@@ -2,7 +2,7 @@ PV = "4.7.2+fsl"
 
 BINV = "4.7.2"
 
-SRCREV = "660a3488ee161884d5e2dae2ca60e6435df037bb"
+SRCREV = "e112897c8f05143eda05b80dd54dc557123cee8c"
 
 SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;destsuffix=gcc-${PV} \
         file://optional_libstdc.patch \
