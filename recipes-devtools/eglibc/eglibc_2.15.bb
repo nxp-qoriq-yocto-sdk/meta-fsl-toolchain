@@ -8,6 +8,7 @@ SRCREV = "a2e55bc41886f646d20c90ca3e7070de82dc026a"
 SRC_URI = "git://git.am.freescale.net/gitolite/sdk/eglibc.git;destsuffix=eglibc-${PV} \
 		file://etc/ld.so.conf \ 
 		file://generate-supported.mk \
+		file://remove_hsep_and_vsep_from_info_pages.patch \
 "
 
 SRC_URI_append_class-nativesdk = " file://ld-search-order.patch \
