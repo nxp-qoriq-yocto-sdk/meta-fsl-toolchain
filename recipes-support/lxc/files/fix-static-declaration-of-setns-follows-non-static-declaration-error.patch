@@ -1,0 +1,22 @@
+fix static declaration of setns follows non-static declaration error
+
+Fix:
+| attach.c:54:12: error: static declaration of 'setns' follows non-static declaration
+| In file included from /nfsroot/b40527/sdk-devel/build_p3041ds_release/tmp/sysroots/p3041ds/usr/include/sched.h:43:0,
+|                  from namespace.h:27,
+|                  from attach.c:43:
+| /nfsroot/b40527/sdk-devel/build_p3041ds_release/tmp/sysroots/p3041ds/usr/include/bits/sched.h:93:12: note: previous declaration of 'setns' was here
+
+Index: lxc-0.9.0/src/lxc/attach.c
+===================================================================
+--- lxc-0.9.0.orig/src/lxc/attach.c
++++ lxc-0.9.0/src/lxc/attach.c
+@@ -51,7 +51,7 @@ lxc_log_define(lxc_attach, lxc);
+ 
+ /* Define setns() if missing from the C library */
+ #ifndef HAVE_SETNS
+-static int setns(int fd, int nstype)
++int setns(int fd, int nstype)
+ {
+ #ifdef __NR_setns
+ return syscall(__NR_setns, fd, nstype);
