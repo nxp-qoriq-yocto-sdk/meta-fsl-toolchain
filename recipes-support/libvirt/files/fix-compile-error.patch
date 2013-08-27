@@ -1,0 +1,24 @@
+fix compile error
+
+Fix:
+| powerpc-fsl_networking-linux-libtool: link: rm -fr .libs/libvirt_driver_storage.lax
+| libvirt_lxc-lxc_monitor_protocol.o: In function `xdr_virLXCProtocolInitEventMsg':
+| libvirt-1.0.3/src/./lxc/lxc_monitor_protocol.c:31: undefined reference to `xdr_uint64_t'
+| collect2: error: ld returned 1 exit status
+| make[3]: *** [libvirt_lxc] Error 1
+
+Index: libvirt-1.0.3/src/lxc/lxc_monitor_protocol.x
+===================================================================
+--- libvirt-1.0.3.orig/src/lxc/lxc_monitor_protocol.x
++++ libvirt-1.0.3/src/lxc/lxc_monitor_protocol.x
+@@ -4,6 +4,10 @@
+  * the libvirt_lxc helper program.
+  */
+ 
++%#ifdef HAVE_XDR_U_INT64_T
++%# define xdr_uint64_t xdr_u_int64_t
++%#endif
++
+ enum virLXCProtocolExitStatus {
+     VIR_LXC_PROTOCOL_EXIT_STATUS_ERROR,
+     VIR_LXC_PROTOCOL_EXIT_STATUS_SHUTDOWN,

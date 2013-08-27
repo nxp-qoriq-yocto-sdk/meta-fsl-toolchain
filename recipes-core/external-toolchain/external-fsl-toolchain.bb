@@ -51,6 +51,9 @@ do_install() {
 	rm -fr ${D}${libdir}/bin
 	rm -rf ${D}${datadir}/zoneinfo
 	rm -rf ${D}${libdir}/libgcc_s.so*
+	rm -rf ${D}${includedir}/tirpc
+	rm -rf ${D}${libdir}/libtirpc*
+	rm -rf ${D}${libdir}/pkgconfig
 
 	#fix the symlinks
 	ln -sf ld-${FSL_VER_LIBC}.so ${D}${base_libdir}/ld.so.1
@@ -58,8 +61,6 @@ do_install() {
 	ln -sf libitm.so.1.0.0 ${D}${libdir}/libitm.so.1
 	ln -sf libgomp.so.1.0.0 ${D}${libdir}/libgomp.so
 	ln -sf libgomp.so.1.0.0 ${D}${libdir}/libgomp.so.1
-	ln -sf libtirpc.so.1.0.10 ${D}${libdir}/libtirpc.so
-	ln -sf libtirpc.so.1.0.10 ${D}${libdir}/libtirpc.so.1
 	ln -sf libstdc++.so.6.0.17 ${D}${libdir}/libstdc++.so
 	ln -sf libstdc++.so.6.0.17 ${D}${libdir}/libstdc++.so.6
 	ln -sf libgfortran.so.3.0.0 ${D}${libdir}/libgfortran.so
@@ -119,8 +120,12 @@ PACKAGES =+ "\
           libitm \
           libitm-dev \
           libitm-staticdev \
+          eglibc \
+          eglibc-dev \
 "
 PACKAGES =+ "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', PN, 'linux-libc-headers linux-libc-headers-dev', '', d)}"
+
+ALLOW_EMPTY_eglibc-dev = "1"
 
 INSANE_SKIP_${PN}-dbg = "staticdev"
 INSANE_SKIP_libgcc += "ldflags"
@@ -143,7 +148,7 @@ RPROVIDES_${PN}-dev += "${TCLIBC}-dev libssp-dev"
 RPROVIDES_${PN}-doc += "${TCLIBC}-doc"
 RPROVIDES_${PN}-dbg += "${TCLIBC}-dbg"
 RPROVIDES_${PN}-pic += "${TCLIBC}-pic"
-RPROVIDES_${PN}-utils += "${TCLIBC}-utils" 
+RPROVIDES_${PN}-utils += "${TCLIBC}-utils"
 RPROVIDES_${PN}-gconv += "${TCLIBC}-gconv"
 RPROVIDES_${PN}-mtrace += "${TCLIBC}-mtrace"
 RPROVIDES_${PN}-extra-nss += "${TCLIBC}-extra-nss"
@@ -207,9 +212,7 @@ FILES_libitm-dev = "${libdir}/libitm.so \
 "
 FILES_libitm-staticdev = "${libdir}/libitm.a"
 
-FILES_${PN} += "${libdir}/libtirpc.so.* \
-                ${libdir}/audit/sotruss-lib.so \
-" 
+FILES_${PN} += "${libdir}/audit/sotruss-lib.so"
 
 FSL_VER_MAIN ??= ""
 

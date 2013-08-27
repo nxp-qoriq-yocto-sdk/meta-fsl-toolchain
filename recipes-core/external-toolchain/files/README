@@ -1,0 +1,17 @@
+External toolchain for Freescale
+==========================================================
+
+This recipe provides external toolchain support for Freescale.
+
+Instructions
+*The support version of toolchain is 4.7.2.
+*The following core types and images can be built correctly:
+ ppce500v2:fsl-image-minimal/fsl-image-core/fsl-image-full
+ ppce500mc:fsl-image-minimal/fsl-image-core/fsl-image-full
+
+Usage
+*Ensure that you have the Freescale toolchain installed. You can get the toolchains from
+ http://gforge.freescale.net/frs/?group_id=328
+*Set the following variables in conf/local.conf:
+ 1.TCMODE = "external-fsl"
+ 2.EXTERNAL_TOOLCHAIN = "/path/to/your/freescale-toolchain-install"

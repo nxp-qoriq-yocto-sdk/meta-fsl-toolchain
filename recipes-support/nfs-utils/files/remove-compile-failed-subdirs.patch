@@ -1,0 +1,18 @@
+remove compile failed subdirs
+
+Index: nfs-utils-1.2.7/utils/Makefile.am
+===================================================================
+--- nfs-utils-1.2.7.orig/utils/Makefile.am
++++ nfs-utils-1.2.7/utils/Makefile.am
+@@ -27,11 +27,9 @@ endif
+ 
+ SUBDIRS = \
+ 	exportfs \
+-	mountd \
+ 	nfsd \
+ 	nfsstat \
+ 	showmount \
+-	statd \
+ 	osd_login \
+ 	$(OPTDIRS)
+ 
