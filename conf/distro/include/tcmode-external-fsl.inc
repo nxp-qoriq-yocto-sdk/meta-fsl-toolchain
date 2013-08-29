@@ -112,3 +112,5 @@ def populate_toolchain_links(d):
             bb.fatal("Unable to populate toolchain binary symlink for %s: %s" % (newpath, exc))
 
 require conf/distro/include/fsl-toolchain-external-version.inc
+
+BUILDCFG_VARS += "FSL_VER_MAIN EXTERNAL_TOOLCHAIN"
