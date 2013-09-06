@@ -48,6 +48,8 @@ do_install() {
 		done
 	fi
 
+	install -d ${D}${bindir}
+	mv ${D}${libdir}/bin/ldd ${D}${bindir}/
 	rm -fr ${D}${libdir}/bin
 	rm -rf ${D}${datadir}/zoneinfo
 	rm -rf ${D}${libdir}/libgcc_s.so*
