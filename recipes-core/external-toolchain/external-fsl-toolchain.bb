@@ -124,10 +124,12 @@ PACKAGES =+ "\
           libitm-staticdev \
           eglibc \
           eglibc-dev \
+          eglibc-utils \
 "
 PACKAGES =+ "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', PN, 'linux-libc-headers linux-libc-headers-dev', '', d)}"
 
 ALLOW_EMPTY_eglibc-dev = "1"
+ALLOW_EMPTY_eglibc-utils = "1"
 
 INSANE_SKIP_${PN}-dbg = "staticdev"
 INSANE_SKIP_libgcc += "ldflags"
