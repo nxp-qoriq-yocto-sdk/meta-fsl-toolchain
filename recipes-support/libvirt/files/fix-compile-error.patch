@@ -1,16 +1,24 @@
-fix compile error
+From 7fd4ff01c28978ac08800a05f4e665925663f735 Mon Sep 17 00:00:00 2001
+From: Zongchun Yu <Zongchun.Yu@freescale.com>
+Date: Fri, 13 Sep 2013 19:34:51 +0800
+Subject: [PATCH] fix compile error
 
 Fix:
 | powerpc-fsl_networking-linux-libtool: link: rm -fr .libs/libvirt_driver_storage.lax
 | libvirt_lxc-lxc_monitor_protocol.o: In function `xdr_virLXCProtocolInitEventMsg':
-| libvirt-1.0.3/src/./lxc/lxc_monitor_protocol.c:31: undefined reference to `xdr_uint64_t'
+| libvirt-1.1.2/src/./lxc/lxc_monitor_protocol.c:31: undefined reference to `xdr_uint64_t'
 | collect2: error: ld returned 1 exit status
 | make[3]: *** [libvirt_lxc] Error 1
 
-Index: libvirt-1.0.3/src/lxc/lxc_monitor_protocol.x
-===================================================================
---- libvirt-1.0.3.orig/src/lxc/lxc_monitor_protocol.x
-+++ libvirt-1.0.3/src/lxc/lxc_monitor_protocol.x
+Signed-off-by: Zongchun Yu <Zongchun.Yu@freescale.com>
+---
+ src/lxc/lxc_monitor_protocol.x |    4 ++++
+ 1 files changed, 4 insertions(+), 0 deletions(-)
+
+diff --git a/src/lxc/lxc_monitor_protocol.x b/src/lxc/lxc_monitor_protocol.x
+index 0926e26..b5a5f27 100644
+--- a/src/lxc/lxc_monitor_protocol.x
++++ b/src/lxc/lxc_monitor_protocol.x
 @@ -4,6 +4,10 @@
   * the libvirt_lxc helper program.
   */
@@ -19,6 +27,9 @@ Index: libvirt-1.0.3/src/lxc/lxc_monitor_protocol.x
 +%# define xdr_uint64_t xdr_u_int64_t
 +%#endif
 +
- enum virLXCProtocolExitStatus {
-     VIR_LXC_PROTOCOL_EXIT_STATUS_ERROR,
-     VIR_LXC_PROTOCOL_EXIT_STATUS_SHUTDOWN,
+ enum virLXCMonitorExitStatus {
+     VIR_LXC_MONITOR_EXIT_STATUS_ERROR,
+     VIR_LXC_MONITOR_EXIT_STATUS_SHUTDOWN,
+-- 
+1.7.0.4
+
