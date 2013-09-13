@@ -96,7 +96,7 @@ do_install_locale_append() {
 	rm -fr ${D}${libdir}/locale
 }
 
-#fix can not find libstdc++ error
+#fix can not find libstdc++ and libc error
 SYSROOT_PREPROCESS_FUNCS += "external_fsl_toolchain_sysroot_preprocess"
 external_fsl_toolchain_sysroot_preprocess() {
 	dir_temp=`grep -E "libdir" ${D}${libdir}/libstdc++.la | sed "s#^libdir='##g" | sed "s#'##g"`
@@ -105,6 +105,16 @@ external_fsl_toolchain_sysroot_preprocess() {
 	install -m 755 ${D}${libdir}/libstdc++.la ${SYSROOT_DESTDIR}${dir_temp}/
 	install -m 755 ${D}${libdir}/libstdc++.so.6.0.17 ${SYSROOT_DESTDIR}${dir_temp}/
 	ln -sf libstdc++.so.6.0.17 ${SYSROOT_DESTDIR}${dir_temp}/libstdc++.so
+
+	if [ "${base_libdir}" = "/lib" ]; then
+	   if [ -e ${S}/lib64 ];then
+              cp -a ${S}/lib64 ${SYSROOT_DESTDIR}/
+	      install -d ${SYSROOT_DESTDIR}/usr/
+	      cp -a ${S}/usr/lib64 ${SYSROOT_DESTDIR}/usr/
+	      sed -i -e "s# /lib64# ../../lib64#g" -e "s# /usr/lib64# .#g" ${SYSROOT_DESTDIR}/usr/lib64/libc.so
+	      sed -i -e "s# /lib64# ../../lib64#g" -e "s# /usr/lib64# .#g" ${SYSROOT_DESTDIR}/usr/lib64/libpthread.so
+	   fi
+	fi
 }
 
 PACKAGES =+ "\
