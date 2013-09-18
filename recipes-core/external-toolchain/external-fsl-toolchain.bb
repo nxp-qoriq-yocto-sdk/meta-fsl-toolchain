@@ -18,7 +18,7 @@ PROVIDES += "\
 	virtual/${TARGET_PREFIX}libc-initial \
 	libgcc \
 	${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', PN, 'linux-libc-headers', '', d)} \
-	${@base_conditional('PREFERRED_PROVIDER_virtual/libc', PN, 'virtual/libc virtual/libiconv virtual/libintl virtual/${TARGET_PREFIX}libc-for-gcc ${TCLIBC}', '', d)} \
+	virtual/libc virtual/libiconv virtual/libintl virtual/${TARGET_PREFIX}libc-for-gcc ${TCLIBC} \
 "
 S = "${EXTERNAL_TOOLCHAIN_SYSROOT}"
 PV = "${FSL_VER_MAIN}"
