@@ -58,7 +58,6 @@ do_install() {
 	rm -rf ${D}${libdir}/pkgconfig
 
 	#fix the symlinks
-	ln -sf ld-${FSL_VER_LIBC}.so ${D}${base_libdir}/ld.so.1
 	ln -sf libitm.so.1.0.0 ${D}${libdir}/libitm.so
 	ln -sf libitm.so.1.0.0 ${D}${libdir}/libitm.so.1
 	ln -sf libgomp.so.1.0.0 ${D}${libdir}/libgomp.so
