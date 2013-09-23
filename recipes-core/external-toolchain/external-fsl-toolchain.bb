@@ -114,6 +114,8 @@ external_fsl_toolchain_sysroot_preprocess() {
 	      sed -i -e "s# /lib64# ../../lib64#g" -e "s# /usr/lib64# .#g" ${SYSROOT_DESTDIR}/usr/lib64/libpthread.so
 	   fi
 	fi
+
+	install -d ${SYSROOT_DESTDIR}/usr/lib
 }
 
 PACKAGES =+ "\
