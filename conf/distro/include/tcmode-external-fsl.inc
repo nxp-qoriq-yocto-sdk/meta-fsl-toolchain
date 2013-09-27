@@ -2,6 +2,13 @@
 # Configuration to use external freescale toolchain
 #
 
+python () {
+        arch = d.getVar("OVERRIDES", True)
+
+        if "e5500-64b:" in arch or "e6500-64b:" in arch:
+           d.setVar('BUILD_64BIT_KERNEL', '1')
+}
+
 EXTERNAL_TOOLCHAIN ?= "UNDEFINED"
 
 TOOLCHAIN_PATH_ADD = "${EXTERNAL_TOOLCHAIN}/bin:"
