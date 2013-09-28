@@ -1,3 +1,11 @@
+python () {
+        tcmode = d.getVar("TCMODE", True)
+        arch = d.getVar("OVERRIDES", True)
+
+        if "external-fsl" in tcmode and ("e5500-64b:" in arch or "e6500-64b:" in arch):
+           d.setVar('LD_append', ' -melf64ppc')
+}
+
 do_configure_prepend () {
 	if [ "${TCMODE}" = "external-fsl" ]; then
 	   sed -i "s:CONFIG_INETD=y:# CONFIG_INETD is not set:g" ${WORKDIR}/defconfig
