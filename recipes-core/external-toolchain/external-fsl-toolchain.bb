@@ -87,6 +87,17 @@ do_install() {
 
 	sed -i -e "s# ${base_libdir}# ../..${base_libdir}#g" -e "s# ${libdir}# .#g" ${D}${libdir}/libc.so
 	sed -i -e "s# ${base_libdir}# ../..${base_libdir}#g" -e "s# ${libdir}# .#g" ${D}${libdir}/libpthread.so
+
+	if [ "${base_libdir}" == "/lib64" ] && [ ! -L ${STAGING_DIR_TARGET}/usr/lib ] ; then
+	    mkdir -p ${STAGING_DIR_TARGET}/${libdir}
+	    cd ${STAGING_DIR_TARGET}/usr
+	    if [ -d lib ]; then
+	       cp -rf lib/* lib64/
+	       rm -rf lib
+	    fi
+	    ln -sf lib64 lib
+	    cd -
+	fi
 }
 
 # These files are picked up out of the sysroot by eglibc-locale, so we don't
@@ -114,8 +125,6 @@ external_fsl_toolchain_sysroot_preprocess() {
 	      sed -i -e "s# /lib64# ../../lib64#g" -e "s# /usr/lib64# .#g" ${SYSROOT_DESTDIR}/usr/lib64/libpthread.so
 	   fi
 	fi
-
-	install -d ${SYSROOT_DESTDIR}/usr/lib
 }
 
 PACKAGES =+ "\
