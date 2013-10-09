@@ -4,15 +4,21 @@ External toolchain for Freescale
 This recipe provides external toolchain support for Freescale.
 
 Instructions
-*The support version of toolchain is 4.7.2.
 *The following core types and images can be built correctly:
- ppce500v2:fsl-image-minimal/fsl-image-core/fsl-image-full
- ppce500mc:fsl-image-minimal/fsl-image-core/fsl-image-full
- ppce5500 :fsl-image-minimal/fsl-image-core
+ ppce500v2  :fsl-image-minimal/fsl-image-core/fsl-image-full
+ ppce500mc  :fsl-image-minimal/fsl-image-core/fsl-image-full
+ ppce5500   :fsl-image-minimal/fsl-image-core/fsl-image-full
+ ppc64e5500 :fsl-image-minimal/fsl-image-core/fsl-image-full
 
 Usage
 *Ensure that you have the Freescale toolchain installed. You can get the toolchains from
- http://gforge.freescale.net/frs/?group_id=328
+ http://gforge.freescale.net/frs/?group_id=328 The support version of toolchain is 4.7.2.
+ please select the right toolchains according to the following list:
+ ppce500v2          : gcc-4.7.2-XMe500v2-linuxspe-i686-linux-r817.tar.bz2
+ ppce500mc          : gcc-4.7.2-XMe500mc-linux-i686-linux-r817.tar.bz2
+ ppce5500/ppc64e5500: gcc-4.7.2-XMe5500-linux-i686-linux-r817.tar.bz2
+ ppce6500           : gcc-4.7.2-XMe6500-linux-i686-linux-r817.tar.bz2
 *Set the following variables in conf/local.conf:
  1.TCMODE = "external-fsl"
  2.EXTERNAL_TOOLCHAIN = "/path/to/your/freescale-toolchain-install"
+ 3.MULTILIBS = ""   (note:only ppce5500/ppc64e5500/ppce6500 need to set this var)
