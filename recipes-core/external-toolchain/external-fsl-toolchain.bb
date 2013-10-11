@@ -88,7 +88,7 @@ do_install() {
 	sed -i -e "s# ${base_libdir}# ../..${base_libdir}#g" -e "s# ${libdir}# .#g" ${D}${libdir}/libc.so
 	sed -i -e "s# ${base_libdir}# ../..${base_libdir}#g" -e "s# ${libdir}# .#g" ${D}${libdir}/libpthread.so
 
-	if [ "${base_libdir}" == "/lib64" ] && [ ! -L ${STAGING_DIR_TARGET}/usr/lib ] ; then
+	if [ "${base_libdir}" = "/lib64" ] && [ ! -L ${STAGING_DIR_TARGET}/usr/lib ] ; then
 	    mkdir -p ${STAGING_DIR_TARGET}/${libdir}
 	    cd ${STAGING_DIR_TARGET}/usr
 	    if [ -d lib ]; then
