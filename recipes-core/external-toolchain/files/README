@@ -11,6 +11,7 @@ Instructions
  ppc64e5500 :fsl-image-minimal/fsl-image-core/fsl-image-full
 
 Usage
+*Ensure the kernel version of build machine OS is 2.6.32 or later.
 *Ensure that you have the Freescale toolchain installed. You can get the toolchains from
  http://gforge.freescale.net/frs/?group_id=328 The support version of toolchain is 4.7.2.
  please select the right toolchains according to the following list:
