@@ -27,6 +27,13 @@ PR = "r0"
 #http://gforge.freescale.net/frs/download.php/1416/gcc-4.7.2-XMe500mc-linux-i686-linux-r817.tar.bz2
 SRC_URI = "file://SUPPORTED"
 
+do_configure_prepend () {
+    specs=`find ${EXTERNAL_TOOLCHAIN} -name specs`
+    dir_temp="/opt/freescale/`echo ${S} | sed "s#/bin/..##g" | sed "s#\(.*\)\(gcc.*\)#\2#g"`"
+    sed -i "s#:${dir_temp}#:#g" ${specs}
+    sed -i "s#-rpath ${dir_temp}#-rpath #g" ${specs}
+}
+
 do_install() {
 	install -d ${D}${base_libdir}
 	cp -a ${S}${base_libdir}/* ${D}${base_libdir}
