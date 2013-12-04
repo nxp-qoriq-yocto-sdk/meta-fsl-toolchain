@@ -1,25 +1,20 @@
-PV = "4.7.2+fsl"
+PV = "4.8.1+fsl"
 
-BINV = "4.7.2"
+BINV = "4.8.1"
 
-SRCREV = "e8e30c249602e8900717ed8021fcb524c173637f"
-
+SRCREV = "d08552bd37bddd6b0eac05e5e8e8cc0cfc2a9bbe"
 SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;destsuffix=gcc-${PV} \
-        file://optional_libstdc.patch \
-        file://use-defaults.h-and-t-oe-in-B.patch \
-        file://GLIBC_DYNAMIC_LINKER.patch \
-        file://64bithack.patch \
-"
+           file://0020-optional-libstdc.patch \
+           file://0023-Use-the-defaults.h-in-B-instead-of-S-and-t-oe-in-B.patch "
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
-NATIVEDEPS =+ " cloog-ppl-native"
+NATIVEDEPS =+ "cloog-native"
 
-EXTRA_OECONF_BASE = " --enable-lto \
-			--enable-libssp \
-			--disable-bootstrap \
-			--disable-libmudflap \
-			--with-system-zlib \
-			--with-linker-hash-style=${LINKER_HASH_STYLE} \
-			--enable-linker-build-id \
-			--enable-checking=release \
-			--enable-cheaders=c_global "
+EXTRA_OECONF_BASE = "--enable-lto \
+                     --enable-libssp \
+                     --disable-bootstrap \
+                     --disable-libmudflap \
+                     --with-system-zlib \
+                     --with-linker-hash-style=${LINKER_HASH_STYLE} \
+                     --enable-linker-build-id \
+                     --enable-checking=release \
+                     --enable-cheaders=c_global "

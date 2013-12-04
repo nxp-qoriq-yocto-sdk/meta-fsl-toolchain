@@ -4,7 +4,7 @@ PR = "r3"
 
 DEPENDS += "gperf-native kconfig-frontends-native"
 
-SRCREV = "9992f1c822d21665b4d7a0d56cd6d15569aae658"
+SRCREV = "a2e55bc41886f646d20c90ca3e7070de82dc026a"
 SRC_URI = "git://git.am.freescale.net/gitolite/sdk/eglibc.git;destsuffix=eglibc-${PV} \
 		file://etc/ld.so.conf \ 
 		file://generate-supported.mk \
