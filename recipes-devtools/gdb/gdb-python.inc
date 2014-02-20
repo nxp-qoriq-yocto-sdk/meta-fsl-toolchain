@@ -10,7 +10,7 @@ do_configure_prepend() {
 case "\$2" in
 	--includes) echo "-I${STAGING_INCDIR_NATIVE}/${PYTHON_DIR}/" ;;
 	--ldflags) echo "-Wl,-rpath-link,${STAGING_LIBDIR_NATIVE}/.. -Wl,-rpath,${libdir}/.. -lpthread -ldl -lutil -lm -lpython${PYTHON_BASEVERSION}" ;;
-	--exec-prefix) echo "${exec_prefix}/bin" ;;
+	--exec-prefix) echo "${exec_prefix}" ;;
 	*) exit 1 ;;
 esac
 exit 0
