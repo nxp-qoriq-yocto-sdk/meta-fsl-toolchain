@@ -10,6 +10,7 @@ SRC_URI = "git://git.am.freescale.net/gitolite/sdk/eglibc.git;destsuffix=eglibc-
 		file://generate-supported.mk \
 		file://remove_hsep_and_vsep_from_info_pages.patch \
 		file://Generate-usr-libexec-getconf-files-when-cross-compil.patch \
+		file://manual-Makefile-add-missing-backslash.patch \
 "
 
 SRC_URI_append_class-nativesdk = " file://ld-search-order.patch \
