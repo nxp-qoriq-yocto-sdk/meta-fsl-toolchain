@@ -1,0 +1,33 @@
+From bbb41789365f59503fc9cdd6792bf4d6326e8fc2 Mon Sep 17 00:00:00 2001
+From: Zongchun Yu <Zongchun.Yu@freescale.com>
+Date: Thu, 27 Feb 2014 16:52:55 +0800
+Subject: [PATCH] fix the definition conflict issue of setns
+
+Signed-off-by: Zongchun Yu <Zongchun.Yu@freescale.com>
+---
+ src/lxc/utils.h |    2 ++
+ 1 files changed, 2 insertions(+), 0 deletions(-)
+
+diff --git a/src/lxc/utils.h b/src/lxc/utils.h
+index f541253..8fb1922 100644
+--- a/src/lxc/utils.h
++++ b/src/lxc/utils.h
+@@ -51,6 +51,7 @@ extern const char *lxc_global_config_value(const char *option_name);
+ #endif
+ 
+ /* Define setns() if missing from the C library */
++#ifndef _SCHED_H
+ #ifndef HAVE_SETNS
+ static inline int setns(int fd, int nstype)
+ {
+@@ -64,6 +65,7 @@ static inline int setns(int fd, int nstype)
+ #endif
+ }
+ #endif
++#endif
+ 
+ /* Define unshare() if missing from the C library */
+ #ifndef HAVE_UNSHARE
+-- 
+1.7.0.4
+
