@@ -57,6 +57,7 @@ do_install() {
 
 	install -d ${D}${bindir}
 	mv ${D}${libdir}/bin/ldd ${D}${bindir}/
+	mv ${D}${libdir}/bin/mtrace ${D}${bindir}/
 	rm -fr ${D}${libdir}/bin
 	rm -rf ${D}${datadir}/zoneinfo
 	rm -rf ${D}${libdir}/libgcc_s.so*
