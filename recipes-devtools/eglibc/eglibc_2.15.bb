@@ -62,7 +62,7 @@ EXTRA_OECONF = "--enable-kernel=${OLDEST_KERNEL} \
                 --with-kconfig=${STAGING_BINDIR_NATIVE} \
                 ${GLIBC_EXTRA_OECONF}"
 
-EXTRA_OECONF += "${@get_libc_fpu_setting(bb, d)}"
+EXTRA_OECONF += "${@get_libc_fpu_setting_eglibc_2_15(bb, d)}"
 
 do_unpack_append() {
     bb.build.exec_func('do_move_ports', d)
@@ -133,6 +133,11 @@ do_compile () {
 	fi
 
 }
+
+def get_libc_fpu_setting_eglibc_2_15(bb, d):
+    if d.getVar('TARGET_FPU', True) in [ 'soft' ]:
+        return "--without-fp"
+    return ""
 
 require eglibc-package.inc
 
