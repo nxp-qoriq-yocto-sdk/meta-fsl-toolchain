@@ -15,7 +15,7 @@ inherit autotools
 
 # pick up an eglibc patch
 FILESPATH = "${FILE_DIRNAME}/eglibc-${PV}"
-SRCREV = "9992f1c822d21665b4d7a0d56cd6d15569aae658"
+SRCREV = "1f47f2932edf06ca03a32eea4b569825fc4b7499"
 SRC_URI = "git://git.am.freescale.net/gitolite/sdk/eglibc.git;destsuffix=eglibc-${PV} \
 		file://fix_for_centos_5.8.patch;patchdir=.. \
 	  "
