@@ -11,6 +11,7 @@ SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;branch=${SRCBRANCH};d
            file://0020-optional-libstdc.patch \
            file://0023-Use-the-defaults.h-in-B-instead-of-S-and-t-oe-in-B.patch \
            file://0038-gcc-4.8-build-args.patch \
+           file://0049-Enable-SPE-AltiVec-generation-on-powepc-linux-target-gcc-4.8.1.patch \
 "
 
 NATIVEDEPS =+ "cloog-native"
