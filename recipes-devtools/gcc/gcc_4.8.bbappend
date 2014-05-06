@@ -11,7 +11,7 @@ python () {
 EXTRA_OECONF_append_e5500 = "${@base_contains('TCMODE', 'external-fsl', ' --disable-libitm --disable-libsanitizer', '', d)}"
 EXTRA_OECONF_append_e5500-64b = "${@base_contains('TCMODE', 'external-fsl', ' --disable-libgomp --disable-libssp --disable-libquadmath --disable-libatomic  --enable-languages=c', '', d)}"
 EXTRA_OECONF_append_e6500 = "${@base_contains('TCMODE', 'external-fsl', ' --disable-libitm --disable-libsanitizer', '', d)}"
-EXTRA_OECONF_append_e6500-64b = "${@base_contains('TCMODE', 'external-fsl', ' --disable-libgomp --disable-libssp --disable-libquadmath --enable-languages=c', '', d)}"
+EXTRA_OECONF_append_e6500-64b = "${@base_contains('TCMODE', 'external-fsl', ' --disable-libgomp --disable-libssp --disable-libquadmath --disable-libatomic  --enable-languages=c', '', d)}"
 
 do_install_append() {
     ${@base_conditional('TCMODE', 'external-fsl', 'rm -fr ${D}${bindir}/*-fsl_*', '', d)}
