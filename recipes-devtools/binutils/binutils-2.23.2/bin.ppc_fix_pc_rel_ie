@@ -1,0 +1,143 @@
+# Problem Statement:
+  While building a kernel with the CONFIG_RELOCATABLE option enabled that is not 
+  supported by book 3E kernels (this includes e6500 kernels), Binutils v2.21 & 
+  v2.23 issues an "internal error" error message that stops the build. Instead it
+  should have issued the following error: "Error: cannot emit PC relative 
+  BFD_RELOC_PPC64_HIGHEST relocation against __end_interrupts" because binutils has 
+  no support for generating a PC relative relocation of this type.
+
+  http://linux.freescale.net/pipermail/linuxppc-dev/2014-May/036185.html 
+
+# Reported by:
+  Sardan Alexandru Cezar
+
+# Owned by:
+  Rohit
+
+# Action:
+  * Backported chages from binutils v2.24 to emit the appropriate error message.
+
+diff -Naur binutils-2.23/gas/config/tc-ppc.c binutils-2.23-pc-rel/gas/config/tc-ppc.c
+--- binutils-2.23/gas/config/tc-ppc.c	2014-05-09 12:04:58.924509002 -0500
++++ binutils-2.23-pc-rel/gas/config/tc-ppc.c	2014-05-10 03:18:52.110372000 -0500
+@@ -6725,28 +6725,116 @@
+ #ifdef OBJ_ELF
+ 	case BFD_RELOC_PPC64_HIGHER:
+ 	  if (fixP->fx_pcrel)
+-	    abort ();
++	    {
++	      if (fixP->fx_addsy != NULL)
++	        {
++	          char *sfile;
++	          unsigned int sline;
++
++	          /* Use expr_symbol_where to see if this is an
++	             expression symbol.  */
++	          if (expr_symbol_where (fixP->fx_addsy, &sfile, &sline))
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("unresolved expression that must"
++	                           " be resolved"));
++	          else
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("cannot emit PC relative %s relocation"
++	                           " against %s"),
++	                        bfd_get_reloc_code_name (fixP->fx_r_type),
++	                        S_GET_NAME (fixP->fx_addsy));
++	        }
++	      else
++	        as_bad_where (fixP->fx_file, fixP->fx_line,
++	                     _("unable to resolve expression"));
++	    }	
+ 	  md_number_to_chars (fixP->fx_frag->fr_literal + fixP->fx_where,
+ 			      PPC_HIGHER (value), 2);
+ 	  break;
+ 
+ 	case BFD_RELOC_PPC64_HIGHER_S:
+ 	  if (fixP->fx_pcrel)
+-	    abort ();
++	    {
++	      if (fixP->fx_addsy != NULL)
++	        {
++	          char *sfile;
++	          unsigned int sline;
++
++	          /* Use expr_symbol_where to see if this is an
++	             expression symbol.  */
++	          if (expr_symbol_where (fixP->fx_addsy, &sfile, &sline))
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("unresolved expression that must"
++	                           " be resolved"));
++	          else
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("cannot emit PC relative %s relocation"
++	                           " against %s"),
++	                        bfd_get_reloc_code_name (fixP->fx_r_type),
++	                        S_GET_NAME (fixP->fx_addsy));
++	        }
++	      else
++	        as_bad_where (fixP->fx_file, fixP->fx_line,
++	                     _("unable to resolve expression"));
++	    }	
+ 	  md_number_to_chars (fixP->fx_frag->fr_literal + fixP->fx_where,
+ 			      PPC_HIGHERA (value), 2);
+ 	  break;
+ 
+ 	case BFD_RELOC_PPC64_HIGHEST:
+ 	  if (fixP->fx_pcrel)
+-	    abort ();
++	    {
++	      if (fixP->fx_addsy != NULL)
++	        {
++	          char *sfile;
++	          unsigned int sline;
++
++	          /* Use expr_symbol_where to see if this is an
++	             expression symbol.  */
++	          if (expr_symbol_where (fixP->fx_addsy, &sfile, &sline))
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("unresolved expression that must"
++	                           " be resolved"));
++	          else
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("cannot emit PC relative %s relocation"
++	                           " against %s"),
++	                        bfd_get_reloc_code_name (fixP->fx_r_type),
++	                        S_GET_NAME (fixP->fx_addsy));
++	        }
++	      else
++	        as_bad_where (fixP->fx_file, fixP->fx_line,
++	                     _("unable to resolve expression"));
++	    }	
+ 	  md_number_to_chars (fixP->fx_frag->fr_literal + fixP->fx_where,
+ 			      PPC_HIGHEST (value), 2);
+ 	  break;
+ 
+ 	case BFD_RELOC_PPC64_HIGHEST_S:
+ 	  if (fixP->fx_pcrel)
+-	    abort ();
++	    {
++	      if (fixP->fx_addsy != NULL)
++	        {
++	          char *sfile;
++	          unsigned int sline;
++
++	          /* Use expr_symbol_where to see if this is an
++	             expression symbol.  */
++	          if (expr_symbol_where (fixP->fx_addsy, &sfile, &sline))
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("unresolved expression that must"
++	                           " be resolved"));
++	          else
++	            as_bad_where (fixP->fx_file, fixP->fx_line,
++	                         _("cannot emit PC relative %s relocation"
++	                           " against %s"),
++	                        bfd_get_reloc_code_name (fixP->fx_r_type),
++	                        S_GET_NAME (fixP->fx_addsy));
++	        }
++	      else
++	        as_bad_where (fixP->fx_file, fixP->fx_line,
++	                     _("unable to resolve expression"));
++	    }	
+ 	  md_number_to_chars (fixP->fx_frag->fr_literal + fixP->fx_where,
+ 			      PPC_HIGHESTA (value), 2);
+ 	  break;

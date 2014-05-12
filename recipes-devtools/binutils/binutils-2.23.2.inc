@@ -30,6 +30,7 @@ SRC_URI = "\
      ${BACKPORT} \
      file://binutils-fix-over-array-bounds-issue.patch \
      file://binutils-xlp-support.patch \
+     file://bin.ppc_fix_pc_rel_ie \
      "
 
 BACKPORT = "\
