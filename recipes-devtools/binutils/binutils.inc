@@ -60,12 +60,12 @@ python do_package_prepend() {
         d.setVarFlag('ALTERNATIVE_LINK_NAME', alt, bindir + "/" + alt)
 
     multilibs = d.getVar('MULTILIB_VARIANTS', True)
-    if not multilibs or bb.data.inherits_class('nativesdk', d):
-        return
-    mlprefix = d.getVar('MLPREFIX', True)
-    if ('%sbinutils' % mlprefix) == d.getVar('PN', True):
-        for alt in make_alts.split():
-            d.setVarFlag('ALTERNATIVE_PRIORITY', alt, 150)
+    if multilibs and not bb.data.inherits_class('nativesdk', d):
+        mlprefix = d.getVar('MLPREFIX', True)
+        if mlprefix:
+            if ('%sbinutils' % mlprefix) in d.getVar('PN', True):
+                for alt in make_alts.split():
+                    d.setVarFlag('ALTERNATIVE_PRIORITY', alt, 50)
 }
 
 # FILES_${PN}-dbg = "${prefix}/${TARGET_SYS}/bin/.debug ${prefix}/${libdir}/.debug"
