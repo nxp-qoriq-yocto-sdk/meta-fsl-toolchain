@@ -8,7 +8,8 @@ LICENSE = "MIT"
 LIC_FILES_CHKSUM = "file://${COREBASE}/LICENSE;md5=4d92cd373abda3937c2bc47fbc49d690 \
                     file://${COREBASE}/meta/COPYING.MIT;md5=3da9cfbcb788c80a0384361b4de20420"
 
-DEPENDS += "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', PN, '', 'linux-libc-headers', d)}"
+NATIVEDEPS = "mpfr-native gmp-native libmpc-native zlib-native"
+DEPENDS += "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', PN, '', 'linux-libc-headers', d)} ${NATIVEDEPS}"
 PROVIDES += "\
 	virtual/${TARGET_PREFIX}gcc \
 	virtual/${TARGET_PREFIX}g++ \
