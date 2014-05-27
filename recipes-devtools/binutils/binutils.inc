@@ -105,6 +105,9 @@ export CC_FOR_BUILD = "LD_LIBRARY_PATH= ${BUILD_CC}"
 MULTIARCH := "${@bb.utils.contains("DISTRO_FEATURES", "multiarch", "yes", "no", d)}"
 do_configure[vardeps] += "MULTIARCH"
 do_configure () {
+	lineno=$(grep -n "m4_define(\[_GCC_AUTOCONF_VERSION\], \[2." ${S}/config/override.m4 | cut -f1 -d:)
+	ver=$(autoconf -V | head -1 | cut -d' ' -f 4)
+	sed -i "${lineno}s/2\.[0-9][0-9]/${ver}/" ${S}/config/override.m4
 	(cd ${S}; gnu-configize) || die "Failed to run gnu-configize"
 	oe_runconf
 #

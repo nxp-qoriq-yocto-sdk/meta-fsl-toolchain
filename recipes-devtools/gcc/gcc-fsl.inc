@@ -27,3 +27,9 @@ EXTRA_OECONF_BASE = "--enable-lto \
                      --enable-linker-build-id \
                      --enable-checking=release \
                      --enable-cheaders=c_global "
+
+do_configure_prepend() {
+        lineno=$(grep -n "m4_define(\[_GCC_AUTOCONF_VERSION\], \[2." ${S}/config/override.m4 | cut -f1 -d:)
+        ver=$(autoconf -V | head -1 | cut -d' ' -f 4)
+        sed -i "${lineno}s/2\.[0-9][0-9]/${ver}/" ${S}/config/override.m4
+}
