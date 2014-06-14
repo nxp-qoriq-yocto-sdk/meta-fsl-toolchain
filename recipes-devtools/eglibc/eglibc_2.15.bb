@@ -5,7 +5,7 @@ PR = "r3"
 DEPENDS += "gperf-native kconfig-frontends-native sed-native"
 
 SRCREV = "6e1ad404bd6a02748330e32ce9363f86e5d64dd1"
-SRC_URI = "git://git.am.freescale.net/gitolite/sdk/eglibc.git;destsuffix=eglibc-${PV} \
+SRC_URI = "git://git.freescale.com/ppc/sdk/eglibc.git;nobranch=1;destsuffix=eglibc-${PV} \
 		file://etc/ld.so.conf \ 
 		file://generate-supported.mk \
 		file://remove_hsep_and_vsep_from_info_pages.patch \
