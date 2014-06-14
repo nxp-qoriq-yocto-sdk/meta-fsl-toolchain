@@ -4,9 +4,8 @@ BINV = "4.8.1"
 
 FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
 
-SRCBRANCH = "gcc-${BINV}"
 SRCREV = "26137172147f224e7fd0ce2a80dcfbde19d672d9"
-SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;branch=${SRCBRANCH};destsuffix=gcc-${PV} \
+SRC_URI = "git://git.freescale.com/ppc/sdk/gcc.git;nobranch=1;destsuffix=gcc-${PV} \
            file://0019-64-bit-multilib-hack-backport.patch \
            file://0020-optional-libstdc.patch \
            file://0023-Use-the-defaults.h-in-B-instead-of-S-and-t-oe-in-B.patch \
