@@ -139,6 +139,7 @@ external_fsl_toolchain_sysroot_preprocess() {
 PACKAGES =+ "\
           libgcc \
           libgcc-dev \
+          libgcov-dev \
           libstdc++ \
           libstdc++-dev \
           libstdc++-staticdev \
@@ -159,6 +160,7 @@ PACKAGES =+ "${@base_conditional('PREFERRED_PROVIDER_linux-libc-headers', PN, 'l
 
 ALLOW_EMPTY_eglibc-dev = "1"
 ALLOW_EMPTY_eglibc-utils = "1"
+ALLOW_EMPTY_libgcov-dev = "1"
 
 INSANE_SKIP_${PN}-dbg = "staticdev"
 INSANE_SKIP_libgcc += "ldflags"
@@ -177,7 +179,7 @@ PKG_${PN}-thread-db = "eglibc-thread-db"
 PKG_${PN}-pcprofile = "eglibc-pcprofile"
 
 RPROVIDES_${PN} += "${TCLIBC} libssp"
-RPROVIDES_${PN}-dev += "${TCLIBC}-dev libssp-dev"
+RPROVIDES_${PN}-dev += "${TCLIBC}-dev libssp-dev libgcov-dev"
 RPROVIDES_${PN}-doc += "${TCLIBC}-doc"
 RPROVIDES_${PN}-dbg += "${TCLIBC}-dbg"
 RPROVIDES_${PN}-pic += "${TCLIBC}-pic"
