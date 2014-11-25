@@ -22,4 +22,4 @@ Usage
 *Set the following variables in conf/local.conf:
  1.TCMODE = "external-fsl"
  2.EXTERNAL_TOOLCHAIN = "/path/to/your/freescale-toolchain-install"
- 3.MULTILIBS = ""   (note:only ppce5500/ppc64e5500/ppce6500/ppc64e6500 need to set this var)
+ 3.MULTILIBS = ""   (note:only ppc64e5500/ppce6500/ppc64e6500 need to set this var)
