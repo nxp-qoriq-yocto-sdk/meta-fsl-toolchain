@@ -27,7 +27,10 @@ SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;branch=gcc-4.9.2;dest
            file://0019-64-bit-multilib-hack.patch \
            file://0020-optional-libstdc.patch \
            file://0023-Use-the-defaults.h-in-B-instead-of-S-and-t-oe-in-B.patch \
+           file://0029-Define-GLIBC_DYNAMIC_LINKER-and-UCLIBC_DYNAMIC_LINKE.patch \
+           file://0034-Use-the-multilib-config-files-from-B-instead-of-usin.patch \
            file://0046-libatomic-deptracking.patch \
+           file://0049-Enable-SPE-AltiVec-generation-on-powepc-linux-target.patch \
 "
 
 S = "${TMPDIR}/work-shared/gcc-${PV}-${PR}/gcc-${PV}"
