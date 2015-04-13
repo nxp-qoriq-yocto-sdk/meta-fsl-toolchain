@@ -71,8 +71,8 @@ do_install() {
 	ln -sf libitm.so.1.0.0 ${D}${libdir}/libitm.so.1
 	ln -sf libgomp.so.1.0.0 ${D}${libdir}/libgomp.so
 	ln -sf libgomp.so.1.0.0 ${D}${libdir}/libgomp.so.1
-	ln -sf libstdc++.so.6.0.18 ${D}${libdir}/libstdc++.so
-	ln -sf libstdc++.so.6.0.18 ${D}${libdir}/libstdc++.so.6
+	ln -sf libstdc++.so.6.0.20 ${D}${libdir}/libstdc++.so
+	ln -sf libstdc++.so.6.0.20 ${D}${libdir}/libstdc++.so.6
 	ln -sf libgfortran.so.3.0.0 ${D}${libdir}/libgfortran.so
 	ln -sf libgfortran.so.3.0.0 ${D}${libdir}/libgfortran.so.3
 	ln -sf ../..${base_libdir}/libm.so.6 ${D}${libdir}/libm.so
@@ -122,8 +122,8 @@ external_fsl_toolchain_sysroot_preprocess() {
 
 	install -d ${SYSROOT_DESTDIR}${dir_temp}/
 	install -m 755 ${D}${libdir}/libstdc++.la ${SYSROOT_DESTDIR}${dir_temp}/
-	install -m 755 ${D}${libdir}/libstdc++.so.6.0.18 ${SYSROOT_DESTDIR}${dir_temp}/
-	ln -sf libstdc++.so.6.0.18 ${SYSROOT_DESTDIR}${dir_temp}/libstdc++.so
+	install -m 755 ${D}${libdir}/libstdc++.so.6.0.20 ${SYSROOT_DESTDIR}${dir_temp}/
+	ln -sf libstdc++.so.6.0.20 ${SYSROOT_DESTDIR}${dir_temp}/libstdc++.so
 
 	if [ "${base_libdir}" = "/lib" ]; then
 	   if [ -e ${S}/lib64 ];then
