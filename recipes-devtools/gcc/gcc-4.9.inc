@@ -11,7 +11,7 @@ BINV = "4.9.2"
 FILESPATH = "${@base_set_filespath([ '${FILE_DIRNAME}/gcc-4.9' ], d)}"
 
 DEPENDS =+ "mpfr gmp libmpc zlib"
-NATIVEDEPS = "mpfr-native gmp-native libmpc-native zlib-native"
+NATIVEDEPS = "cloog-native mpfr-native gmp-native libmpc-native zlib-native"
 
 LICENSE = "GPL-3.0-with-GCC-exception & GPLv3"
 
@@ -50,7 +50,6 @@ EXTRA_OECONF_BASE = "   ${LTO} \
 			--with-linker-hash-style=${LINKER_HASH_STYLE} \
 			--enable-linker-build-id \
 		        --with-ppl=no \
-                        --with-cloog=no \
 			--enable-checking=release \
 			--enable-cheaders=c_global "
 
