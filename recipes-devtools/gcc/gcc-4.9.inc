@@ -23,7 +23,7 @@ LIC_FILES_CHKSUM = "\
     file://COPYING.RUNTIME;md5=fe60d87048567d4fe8c8a0ed2448bcc8 \
 "
 SRCREV = "12ac7823b0d5cb3279a1c57588cf8748f245712b"
-SRC_URI = "git://git.am.freescale.net/gitolite/sdk/gcc.git;branch=gcc-4.9.2;destsuffix=gcc-${PV} \
+SRC_URI = "git://git.freescale.com/ppc/sdk/gcc.git;branch=gcc-4.9.2;destsuffix=gcc-${PV} \
            file://0019-64-bit-multilib-hack.patch \
            file://0020-optional-libstdc.patch \
            file://0023-Use-the-defaults.h-in-B-instead-of-S-and-t-oe-in-B.patch \
